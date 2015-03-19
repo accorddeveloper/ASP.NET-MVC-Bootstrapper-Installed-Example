@@ -336,17 +336,12 @@
     <Compile Include="Modules\ValidatorExtentions\DateTimeExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Modules\ValidatorExtentions\MarkdownHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Modules\ValidatorExtentions\Validation.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Utility\DateTimeExtensions.cs" />
     <Compile Include="Utility\EnumDropDownList.cs" />
     <Compile Include="Utility\LocalizationHelper.cs" />
-    <Compile Include="Utility\MarkdownHelper.cs" />
-    <Compile Include="Utility\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Northwind.mdf" />
@@ -634,16 +629,6 @@
     <Content Include="Views\Shared\_LoginUrlPage.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDown.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDownDynamic.cshtml" />
-    <Content Include="Views\ProductOrders\Create.cshtml" />
-    <Content Include="Views\ProductOrders\Delete.cshtml" />
-    <Content Include="Views\ProductOrders\Details.cshtml" />
-    <Content Include="Views\ProductOrders\Edit.cshtml" />
-    <Content Include="Views\ProductOrders\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Tag.cshtml" />
   </ItemGroup>
   <ItemGroup>
