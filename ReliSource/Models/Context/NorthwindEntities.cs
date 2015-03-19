@@ -7,13 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using ReliSource.Modules.Extensions.Context;
+
 namespace ReliSource.Models.EntityModel
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NorthwindEntities : DbContext
+    public partial class NorthwindEntities : DevDbContext
     {
         public NorthwindEntities()
             : base("name=NorthwindEntities")

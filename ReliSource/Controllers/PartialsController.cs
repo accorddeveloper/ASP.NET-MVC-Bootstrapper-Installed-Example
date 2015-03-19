@@ -9,11 +9,12 @@ using ReliSource.Controllers;
 using ReliSource.Models.Context;
 //using ReliSource.Models.EntityModel.POCO; // Northwind Sample
 using DevTrends.MvcDonutCaching;
+using ReliSource.Models.EntityModel;
 
 namespace ReliSource.Controllers {
     [OutputCache(CacheProfile = "YearNoParam")]
     //public class PartialsController : GenericController<Inherit it with your db context> {
-    public class PartialsController : GenericController<DevIdentityDbContext> {
+    public class PartialsController : GenericController<NorthwindEntities> {
 
 
         #region Constructors
