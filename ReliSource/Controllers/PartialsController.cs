@@ -57,6 +57,17 @@ namespace ReliSource.Controllers {
         //#endregion 
         #endregion
 
+        #region EmployeesController : DropDowns to paste into the partial
+
+        // [DonutOutputCache(CacheProfile = "YearNoParam")]
+        public JsonResult GetReportsTo() {
+            var data = db.Employees.Select(n => new { id = n.EmployeeID, display = n.LastName }).ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+
     }
 
 }

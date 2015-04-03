@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace ReliSource.Models.EntityModel
 {
     using System;
@@ -21,6 +23,7 @@ namespace ReliSource.Models.EntityModel
         }
     
         public int EmployeeID { get; set; }
+        [Display(Name="Last Name", Description="kjhdkwhk")]
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Title { get; set; }
