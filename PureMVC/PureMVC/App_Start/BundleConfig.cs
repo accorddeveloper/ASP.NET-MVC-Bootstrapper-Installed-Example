@@ -18,7 +18,22 @@ namespace PureMVC {
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Content/js-framework/byId.js",
+                      "~/Content/js-framework/app.js",
+                      "~/Content/js-framework/extensions/constants.js",
+                      "~/Content/js-framework/extensions/urls.js",
+                      "~/Content/js-framework/extensions/selectors.js",
+                      "~/Content/js-framework/extensions/initialize.js",
+                      "~/Content/js-framework/extensions/modal.js",
+                      "~/Content/js-framework/extensions/pagination.js",
+                      "~/Content/js-framework/extensions/regularExp.js",
+                      "~/Content/js-framework/controllers/controllers.js",
+                      "~/Content/js-framework/controllers/homeController.js",
+                      "~/Content/js-framework/controllers/initialize.js",
+                      "~/Content/js-framework/jQueryExtend.js",
+                      "~/Content/js-framework/app.js",
+                      "~/Content/js-framework/app.run.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

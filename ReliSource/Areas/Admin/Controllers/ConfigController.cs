@@ -39,9 +39,9 @@ namespace ReliSource.Areas.Admin.Controllers {
                 _db.Entry(coreSetting).State = EntityState.Modified;
                 _db.SaveChanges();
                 AppConfig.RefreshSetting();
-                ViewBag.Success = "Saved Successfully.";
+                AppVar.SetSavedStatus(ViewBag);
             }
-
+            AppVar.SetErrorStatus(ViewBag);
             return View(coreSetting);
         }
 

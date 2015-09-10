@@ -1,5 +1,13 @@
-﻿/*---------------------------------------------------
-    Developers Organism
-  ---------------------------------------------------
-    Written by Alim Ul Karim
-  ---------------------------------------------------*/
+﻿.login-btn-wrapper {
+  max-width: 294px;
+  max-width: 29.4rem;
+}
+.login-btn-wrapper .checkbox {
+  max-width: 150px;
+  max-width: 15rem;
+  float: left;
+}
+.login-btn-wrapper .btn {
+  float: right;
+}
+/*# sourceMappingURL=front-developer.css.map */

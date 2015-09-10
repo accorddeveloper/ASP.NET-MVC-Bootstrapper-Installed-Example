@@ -251,8 +251,6 @@ namespace ReliSource.Controllers {
 
         #region LogOff
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult SignOut() {
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
@@ -303,6 +301,9 @@ namespace ReliSource.Controllers {
                 var result = await Manager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
                     SignInProgrammatically(user, false);
+                    if (model.Role == -1) {
+                        
+                    }
                     RoleManager.AddTempRoleInfo(user, model.Role);
 
                     if (AppVar.Setting.IsConfirmMailRequired && AppVar.Setting.IsFirstUserFound) {
