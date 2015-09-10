@@ -29,7 +29,7 @@ $.app.controllers.helloController = {
 
         contact: function () {
             /// <summary>
-            /// Represents index action page.
+            /// Represents contact action page.
             /// Refers to the data-action attribute.
             /// </summary>
             /// <returns type=""></returns>
