@@ -517,6 +517,9 @@
     </Content>
     <Content Include="Content\Less\bootstrap-tag.less" />
     <Content Include="App_Data\SQLScriptsforCountryInformation.7z" />
+    <Content Include="Content\css\front-developer.css.map">
+      <DependentUpon>front-developer.css</DependentUpon>
+    </Content>
     <None Include="Content\Scripts\Miscellaneous\_references.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
@@ -635,8 +638,6 @@
     <Content Include="Content\Scripts\Angular\angular.min.js.map" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.min.map" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
-    <Content Include="Views\Shared\_NavBar.BootstrapEditorTemplates.cshtml" />
-    <Content Include="Views\Shared\_Layout.BootstrapEditorTemplates.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\FileMulti.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Rating-10-b.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Search.cshtml" />

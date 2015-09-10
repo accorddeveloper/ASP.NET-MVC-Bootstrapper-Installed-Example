@@ -187,7 +187,7 @@
     <Content Include="Content\js-framework\app.run.js" />
     <Content Include="Content\js-framework\byId.js" />
     <Content Include="Content\js-framework\controllers\controllers.js" />
-    <Content Include="Content\js-framework\controllers\helloController.js" />
+    <Content Include="Content\js-framework\controllers\homeController.js" />
     <Content Include="Content\js-framework\controllers\initialize.js" />
     <Content Include="Content\js-framework\extensions\constants.js" />
     <Content Include="Content\js-framework\extensions\initialize.js" />

@@ -116,7 +116,7 @@ namespace ReliSource.Models.POCO.IdentityCustomization {
 
         [Column(TypeName = "VARCHAR")]
         [Required]
-        [StringLength(30)]
+        [StringLength(50)]
         [DataType(DataType.Password)]
         public string SenderEmailPassword { get; set; }
 
