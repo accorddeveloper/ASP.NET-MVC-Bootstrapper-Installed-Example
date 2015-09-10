@@ -18,20 +18,21 @@ namespace PureMVC {
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/js-framework/byId.js",
-                      "~/Scripts/js-framework/app.js",
-                      "~/Scripts/js-framework/extensions/constants.js",
-                      "~/Scripts/js-framework/extensions/urls.js",
-                      "~/Scripts/js-framework/extensions/selectors.js",
-                      "~/Scripts/js-framework/extensions/initialize.js",
-                      "~/Scripts/js-framework/extensions/modal.js",
-                      "~/Scripts/js-framework/extensions/pagination.js",
-                      "~/Scripts/js-framework/extensions/regularExp.js",
-                      "~/Scripts/js-framework/controllers/controllers.js",
-                      "~/Scripts/js-framework/controllers/initialize.js",
-                      "~/Scripts/js-framework/jQueryExtend.js",
-                      "~/Scripts/js-framework/app.js",
-                      "~/Scripts/js-framework/app.run.js"
+                      "~/Content/js-framework/byId.js",
+                      "~/Content/js-framework/app.js",
+                      "~/Content/js-framework/extensions/constants.js",
+                      "~/Content/js-framework/extensions/urls.js",
+                      "~/Content/js-framework/extensions/selectors.js",
+                      "~/Content/js-framework/extensions/initialize.js",
+                      "~/Content/js-framework/extensions/modal.js",
+                      "~/Content/js-framework/extensions/pagination.js",
+                      "~/Content/js-framework/extensions/regularExp.js",
+                      "~/Content/js-framework/controllers/controllers.js",
+                      "~/Content/js-framework/controllers/homeController.js",
+                      "~/Content/js-framework/controllers/initialize.js",
+                      "~/Content/js-framework/jQueryExtend.js",
+                      "~/Content/js-framework/app.js",
+                      "~/Content/js-framework/app.run.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
