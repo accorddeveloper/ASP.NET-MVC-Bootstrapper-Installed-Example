@@ -17,9 +17,14 @@ using Microsoft.Owin.Security;
 namespace ReliSource.Controllers {
     [Authorize]
     public class AccountController : Controller {
+        #region Constants and Variable
+        const string ControllerName = "Account";
+        const string DynamicLoadPartialController = "/Partials/";
+        #endregion
         #region Constructors
 
         public AccountController() {
+            ViewBag.dynamicLoadPartialController = DynamicLoadPartialController;
             Manager = UserManager.Manager;
         }
 
@@ -195,7 +200,7 @@ namespace ReliSource.Controllers {
 
         public void SetThingsInViewBag() {
             ViewBag.Country = CachedQueriedData.GetCountries();
-            ViewBag.Country = CachedQueriedData.GetCountries();
+         
         }
 
         #endregion

@@ -20,6 +20,7 @@ namespace ReliSource.Modules.Role {
             new RoleStore<ApplicationRole, long, ApplicationUserRole>(new ApplicationDbContext());
 
         private static ApplicationRoleManager _roleManager;
+        private static List<ApplicationRole> _cachesOfUsers = new List<ApplicationRole>(1200);
         public int MyProperty { get; set; }
 
         public static ApplicationRoleManager Manager {
@@ -37,6 +38,17 @@ namespace ReliSource.Modules.Role {
             _roleStore = new RoleStore<ApplicationRole, long, ApplicationUserRole>(new ApplicationDbContext());
             _roleManager = new ApplicationRoleManager(_roleStore);
             return _roleManager;
+        }
+        #endregion
+        #region Get Users Highest Role
+        public static ApplicationRole GetHighestRole(long userId) {
+            if (UserManager.IsAuthenticated()) {
+                var roles = GetUserRolesAsApplicationRole(userId);
+                var priorityLow = roles.Min(n => n.PriorityLevel);
+                var highestPriorityRole = roles.FirstOrDefault(n => n.PriorityLevel == priorityLow);
+                return highestPriorityRole;
+            }
+            return null;
         }
 
         #endregion
@@ -167,7 +179,7 @@ namespace ReliSource.Modules.Role {
 
         #endregion
 
-        #region Is In Role
+        #region Is In Role/ Has Role
 
         /// <summary>
         ///     Check if user is in this role.
@@ -191,6 +203,23 @@ namespace ReliSource.Modules.Role {
             return false;
         }
 
+        public static bool HasMiniumRole(long userId, string roleName) {
+            var role = GetRole(roleName);
+            if (role != null) {
+                using (var db = new ApplicationDbContext()) {
+                    var anyAboveRoles = db.Roles.Where(r => r.PriorityLevel <= role.PriorityLevel);
+                    return anyAboveRoles.Any(n => IsInRole(userId, n.Name));
+                }
+            }
+            return false;
+        }
+        public static bool HasMiniumRole(string roleName) {
+            if (UserManager.IsAuthenticated()) {
+                var userId = UserManager.GetCurrentUser().UserID;
+                return HasMiniumRole(userId, roleName);
+            }
+            return false;
+        }
         #endregion
 
         #region Get Users Roles
@@ -241,7 +270,6 @@ namespace ReliSource.Modules.Role {
             using (var db2 = new ApplicationDbContext()) {
                 return db2.Roles.Where(n => n.Users.Any(u => u.UserId == userId)).ToList();
             }
-            return null;
         }
 
         #endregion

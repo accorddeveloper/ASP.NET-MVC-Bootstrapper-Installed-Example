@@ -28,11 +28,18 @@ namespace ReliSource.Modules.DevUser {
         #region Get Every User
 
         /// <summary>
+        /// Get all the list of users.
         /// </summary>
-        /// <param name="username"></param>
         /// <returns>Returns all stored users in the database.</returns>
-        public static List<ApplicationUser> GetEveryUser() {
+        public static List<ApplicationUser> GetAllUsers() {
             return Manager.Users.ToList();
+        }
+        /// <summary>
+        /// Get all the list of users.
+        /// </summary>
+        /// <returns>Returns all stored users as IQueryable for pagination.</returns>
+        public static IQueryable<ApplicationUser> GetAllUsersAsIQueryable() {
+            return Manager.Users;
         }
 
         #endregion
@@ -139,13 +146,17 @@ namespace ReliSource.Modules.DevUser {
             RegistrationCustomCode.CompletionBefore(userId, getRoleFromRegistration, role);
             using (var db2 = new ApplicationDbContext()) {
                 var user = db2.Users.Find(userId);
+                RegistrationCustomCode.CompletionBefore(user, getRoleFromRegistration, role);
+                RegistrationCustomCode.CompletionBefore(userId, getRoleFromRegistration, role);
                 if (user != null) {
-                    user.IsRegistrationComplete = true;
-                    user.EmailConfirmed = true;
-                    db2.SaveChanges();
+                    //user.IsRegistrationComplete = true;
+                    //user.EmailConfirmed = true;
+                    //db2.SaveChanges();
+					// here completion doesn't work
                     if (!AppConfig.Setting.IsFirstUserFound) {
                         // first user not found yet.
                         // first user is admin
+                        #region First User Registrations
                         var getHigestPriority = db2.Roles.Min(n => n.PriorityLevel);
                         var getHigestPriorityRole = db2.Roles.FirstOrDefault(n => n.PriorityLevel == getHigestPriority);
                         RoleManager.AddUnderlyingRoles(user, getHigestPriorityRole.Name);
@@ -155,6 +166,7 @@ namespace ReliSource.Modules.DevUser {
                             db3.SaveChanges(setting);
                             AppConfig.RefreshSetting();
                         }
+                        #endregion
                     } else {
                         if (getRoleFromRegistration) {
                             if (role != null) {
@@ -167,6 +179,11 @@ namespace ReliSource.Modules.DevUser {
                             }
                         }
                     }
+                    user.IsRegistrationComplete = true;
+                    user.EmailConfirmed = true;
+                    db2.SaveChanges(); // saved registration complete
+                    RegistrationCustomCode.CompletionAfter(user, getRoleFromRegistration, role);
+                    RegistrationCustomCode.CompletionAfter(userId, getRoleFromRegistration, role);
                 }
             }
             RegistrationCustomCode.CompletionAfter(userId, getRoleFromRegistration, role);
@@ -298,15 +315,16 @@ namespace ReliSource.Modules.DevUser {
             if (user != null && user.Email != null && email != null && user.Email.ToLower() == email.ToLower()) {
                 return user;
             }
-            return null;
+            return user;
         }
 
         public static ApplicationUser GetUserFromSession(string username) {
             var user = GetUserFromSession();
-            if (user != null && user.Email != null && username != null && user.Email.ToLower() == username.ToLower()) {
+            if (user != null && user.Email != null && username != null &&
+                user.UserName.ToLower().Equals(username.ToLower())) {
                 return user;
             }
-            return null;
+            return user;
         }
 
         public static ApplicationUser GetUserFromSession(long userId) {
@@ -355,6 +373,21 @@ namespace ReliSource.Modules.DevUser {
             return null;
         }
 
+        /// <summary>
+        ///     Return current user in optimized fashion.
+        /// </summary>
+        /// <returns>Returns -1 if not logged in.</returns>
+        public static long GetLoggedUserId() {
+            if (HttpContext.Current.User.Identity.IsAuthenticated) {
+                var userid = (long?)HttpContext.Current.Session[SessionNames.UserID];
+                if (userid != null) {
+                    return (long)userid;
+                }
+                return GetCurrentUser().UserID;
+            }
+            return -1;
+        }
+
         #endregion
 
         #region User Exist check with Email or Username
@@ -377,6 +410,9 @@ namespace ReliSource.Modules.DevUser {
         /// <param name="user"></param>
         public static void SaveCurrentUser(ApplicationUser user) {
             HttpContext.Current.Session[SessionNames.User] = user;
+            if (user != null) {
+                HttpContext.Current.Session[SessionNames.UserID] = user.UserID;
+            }
         }
 
         /// <summary>
