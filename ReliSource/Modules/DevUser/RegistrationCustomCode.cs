@@ -1,4 +1,6 @@
-﻿namespace ReliSource.Modules.DevUser {
+﻿using ReliSource.Models.POCO.Identity;
+
+namespace ReliSource.Modules.DevUser {
     public static class RegistrationCustomCode {
         public static void CompletionBefore(long userId, bool getRoleFromRegistration, string role = null) {
         }

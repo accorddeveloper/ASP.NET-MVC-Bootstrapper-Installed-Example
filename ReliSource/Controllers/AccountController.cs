@@ -257,8 +257,8 @@ namespace ReliSource.Controllers {
         #region LogOff
 
         public ActionResult SignOut() {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+
+            return SignOutProgrammatically();
         }
 
         private ActionResult SignOutProgrammatically() {
@@ -313,7 +313,7 @@ namespace ReliSource.Controllers {
 
                     if (AppVar.Setting.IsConfirmMailRequired && AppVar.Setting.IsFirstUserFound) {
                         // mail needs to be confirmed.
-
+                        // first user is already registered
                         #region Send an email to the user about mail confirmation
 
                         var code = Manager.GenerateEmailConfirmationToken(user.Id);
@@ -331,6 +331,7 @@ namespace ReliSource.Controllers {
                         #endregion
                     }
                     if (!AppVar.Setting.IsFirstUserFound) {
+                        // first user is not registered yet
                         #region Send an email to the user about mail confirmation
 
                         var code = Manager.GenerateEmailConfirmationToken(user.Id);

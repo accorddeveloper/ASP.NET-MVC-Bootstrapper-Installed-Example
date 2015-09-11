@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
-namespace WereViewApp.Modules.Reponse {
+namespace ReliSource.Modules.Reponse {
     public class RemoveETagModule : IHttpModule {
         public void Dispose() { }
 

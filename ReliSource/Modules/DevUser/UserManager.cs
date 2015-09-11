@@ -146,7 +146,6 @@ namespace ReliSource.Modules.DevUser {
             RegistrationCustomCode.CompletionBefore(userId, getRoleFromRegistration, role);
             using (var db2 = new ApplicationDbContext()) {
                 var user = db2.Users.Find(userId);
-                RegistrationCustomCode.CompletionBefore(user, getRoleFromRegistration, role);
                 RegistrationCustomCode.CompletionBefore(userId, getRoleFromRegistration, role);
                 if (user != null) {
                     //user.IsRegistrationComplete = true;

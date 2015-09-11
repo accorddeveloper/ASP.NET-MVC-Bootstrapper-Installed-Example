@@ -1,13 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web;
-using System.Linq;
-using System.Data.Entity;
-using WereViewApp.Models.Context;
-using WereViewApp.Models.POCO.IdentityCustomization;
-using WereViewApp.Modules.Session;
+using ReliSource.Models.Context;
+using ReliSource.Modules.Session;
 
-namespace WereViewApp.Modules.InternetProtocolRelations {
+namespace ReliSource.Modules.InternetProtocolRelations {
     public class IpConfigRelations {
 
         public static int GetCountryId(string ipAddress) {

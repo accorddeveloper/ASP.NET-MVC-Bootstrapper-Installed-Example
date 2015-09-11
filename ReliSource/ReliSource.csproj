@@ -322,12 +322,14 @@
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Modules\DevHash.cs" />
     <Compile Include="Modules\HtmlGenerator.cs" />
+    <Compile Include="Modules\InternetProtocolRelations\IpConfigRelations.cs" />
     <Compile Include="Modules\IPConfig\IPConfig.cs" />
     <Compile Include="Modules\Mail\MailHtml.cs" />
     <Compile Include="Modules\Mail\MailSender.cs" />
     <Compile Include="Modules\Menu\GenerateMenu.cs" />
     <Compile Include="Modules\Message\Const.cs" />
     <Compile Include="Modules\ObjectToArray\ObjectToArrary.cs" />
+    <Compile Include="Modules\Reponse\RemoveETagModule.cs" />
     <Compile Include="Modules\Role\RoleManager.cs" />
     <Compile Include="Modules\Role\RoleNames.cs" />
     <Compile Include="Modules\Session\SessionNames.cs" />
