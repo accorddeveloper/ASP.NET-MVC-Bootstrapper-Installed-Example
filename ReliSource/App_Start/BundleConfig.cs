@@ -5,6 +5,7 @@ namespace ReliSource {
         public static void RegisterBundles(BundleCollection bundles) {
             #region CDN Constants
 
+            const string jQueryVersion = "2.1.4";
             //const string jQueryCDN = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
             const string jQueryCdn = "http://code.jquery.com/jquery-latest.min.js";
             const string mordernizerCdn = "http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
@@ -17,7 +18,7 @@ namespace ReliSource {
             #region jQuery
 
             bundles.Add(new ScriptBundle("~/bundles/jquery", jQueryCdn)
-                .Include("~/Content/Scripts/jQuery/jquery-2.1.3.min.js") //if no CDN
+                        .Include("~/Content/Scripts/jQuery/jquery-" + jQueryVersion + ".js") //if no CDN
                 );
 
             #endregion
