@@ -1,15 +1,13 @@
 ﻿using System.Web.Optimization;
 
 namespace ReliSource {
-    public class BundleConfig {
+    public static class BundleConfig {
         public static void RegisterBundles(BundleCollection bundles) {
             #region CDN Constants
 
             const string jQueryVersion = "2.1.4";
-            //const string jQueryCDN = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
-            const string jQueryCdn = "http://code.jquery.com/jquery-latest.min.js";
-            const string mordernizerCdn = "http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
-            //const string respondJsCDN = "http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"
+            const string jQueryCdn = "//code.jquery.com/jquery-latest.min.js";
+            const string mordernizerCdn = "//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
 
             #endregion
 
