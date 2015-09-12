@@ -33,7 +33,7 @@ namespace ReliSource.Controllers {
         #region Call Complete Registration
 
         public void CallCompleteRegistration(long userId) {
-            UserManager.CompleteRegistration(userId, true);
+            UserManager.CompleteRegistration(userId, AppVar.Setting.IsRegisterCodeRequiredToRegister);
         }
 
         #endregion

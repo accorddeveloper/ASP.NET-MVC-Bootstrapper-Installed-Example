@@ -145,3 +145,4 @@ D:\Working\GitHub\ReliSourceTestDrive\ReliSource\bin\System.Web.WebPages.Deploym
 D:\Working\GitHub\ReliSourceTestDrive\ReliSource\bin\System.Web.WebPages.Razor.xml
 D:\Working\GitHub\ReliSourceTestDrive\ReliSource\obj\Debug\ReliSource.dll
 D:\Working\GitHub\ReliSourceTestDrive\ReliSource\obj\Debug\ReliSource.pdb
+D:\Working\GitHub\ReliSourceTestDrive\ReliSource\obj\Debug\ReliSource.csprojResolveAssemblyReference.cache

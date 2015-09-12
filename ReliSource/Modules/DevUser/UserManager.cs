@@ -314,7 +314,7 @@ namespace ReliSource.Modules.DevUser {
             if (user != null && user.Email != null && email != null && user.Email.ToLower() == email.ToLower()) {
                 return user;
             }
-            return user;
+            return null;
         }
 
         public static ApplicationUser GetUserFromSession(string username) {
@@ -323,7 +323,7 @@ namespace ReliSource.Modules.DevUser {
                 user.UserName.ToLower().Equals(username.ToLower())) {
                 return user;
             }
-            return user;
+            return null;
         }
 
         public static ApplicationUser GetUserFromSession(long userId) {
