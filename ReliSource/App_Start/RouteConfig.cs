@@ -11,6 +11,7 @@ namespace ReliSource {
             const string parentControllerNamespace = "ReliSource.Controllers";
             const string accountController = "Account";
             #endregion
+
             #region Login, Register, Authentication Additional Routes
 
             routes.MapRoute(
@@ -47,7 +48,7 @@ namespace ReliSource {
                defaults: new { controller = accountController, action = "ExternalLogin", id = UrlParameter.Optional },
                namespaces: new string[] { parentControllerNamespace }
                 );
-
+     
             #endregion
 
             #region Default Route : By default indexes
