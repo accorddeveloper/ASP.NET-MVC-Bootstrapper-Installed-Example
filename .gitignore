@@ -46,3 +46,4 @@ ReliSource/bin/*.*
 ReliSource/obj/
 ReliSource/obj/*.*
 ReliSource/obj/debug/*.*
+*.suo
