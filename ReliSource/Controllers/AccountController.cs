@@ -68,7 +68,7 @@ namespace ReliSource.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider) {
             // Request a redirect to the external login provider to link a login for the current user
-            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
+            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), IdentityExtensions.GetUserId(User.Identity));
         }
 
         #endregion
@@ -76,11 +76,11 @@ namespace ReliSource.Controllers {
         #region LinkLoginCallBack
 
         public async Task<ActionResult> LinkLoginCallback() {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, IdentityExtensions.GetUserId(User.Identity));
             if (loginInfo == null) {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
-            var result = await Manager.AddLoginAsync(User.Identity.GetUserID(), loginInfo.Login);
+            var result = await Manager.AddLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), loginInfo.Login);
             if (result.Succeeded) {
                 return RedirectToAction("Manage");
             }
@@ -137,9 +137,9 @@ namespace ReliSource.Controllers {
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey) {
             ManageMessageId? message = null;
             var result =
-                await Manager.RemoveLoginAsync(User.Identity.GetUserID(), new UserLoginInfo(loginProvider, providerKey));
+                await Manager.RemoveLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded) {
-                var user = await Manager.FindByIdAsync(User.Identity.GetUserID());
+                var user = await Manager.FindByIdAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
                 await SignInAsync(user, false);
                 message = ManageMessageId.RemoveLoginSuccess;
             } else {
@@ -255,12 +255,13 @@ namespace ReliSource.Controllers {
         #endregion
 
         #region LogOff
-
+        [HttpPost]
         public ActionResult SignOut() {
+
             return SignOutProgrammatically();
         }
 
-        private ActionResult SignOutProgrammatically() {
+        public ActionResult SignOutProgrammatically() {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignOut();
@@ -500,9 +501,9 @@ namespace ReliSource.Controllers {
                 if (ModelState.IsValid) {
                     var result =
                         await
-                            Manager.ChangePasswordAsync(User.Identity.GetUserID(), model.OldPassword, model.NewPassword);
+                            Manager.ChangePasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), model.OldPassword, model.NewPassword);
                     if (result.Succeeded) {
-                        var user = await Manager.FindByIdAsync(User.Identity.GetUserID());
+                        var user = await Manager.FindByIdAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
                         await SignInAsync(user, false);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
@@ -516,7 +517,7 @@ namespace ReliSource.Controllers {
                 }
 
                 if (ModelState.IsValid) {
-                    var result = await Manager.AddPasswordAsync(User.Identity.GetUserID(), model.NewPassword);
+                    var result = await Manager.AddPasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), model.NewPassword);
                     if (result.Succeeded) {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
@@ -547,7 +548,7 @@ namespace ReliSource.Controllers {
         }
 
         private bool HasPassword() {
-            var user = Manager.FindById(User.Identity.GetUserID());
+            var user = Manager.FindById(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
             if (user != null) {
                 return user.PasswordHash != null;
             }
