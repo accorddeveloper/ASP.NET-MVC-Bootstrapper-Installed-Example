@@ -257,7 +257,6 @@ namespace ReliSource.Controllers {
         #region LogOff
 
         public ActionResult SignOut() {
-
             return SignOutProgrammatically();
         }
 

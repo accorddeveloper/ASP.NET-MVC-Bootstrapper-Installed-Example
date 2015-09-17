@@ -39,12 +39,7 @@ namespace ReliSource {
                 namespaces: new string[] { parentControllerNamespace }
             );
 
-            routes.MapRoute(
-                name: "LogOff",
-                url: "LogOff",
-                defaults: new { controller = accountController, action = "SignOut" },
-                namespaces: new string[] { parentControllerNamespace }
-                );
+  
 
             routes.MapRoute(
                name: "ExternalSigninConfig",
