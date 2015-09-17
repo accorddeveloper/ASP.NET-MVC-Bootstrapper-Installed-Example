@@ -163,7 +163,7 @@ namespace ReliSource.Controllers {
 
         [ChildActionOnly]
         public ActionResult RemoveAccountList() {
-            var linkedAccounts = Manager.GetLogins(long.Parse(IdentityExtensions.GetUserId(User.Identity)));
+            var linkedAccounts = Manager.GetLogins(long.Parse(User.Identity.GetUserId()));
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return PartialView("_RemoveAccountPartial", linkedAccounts);
         }
@@ -255,13 +255,13 @@ namespace ReliSource.Controllers {
         #endregion
 
         #region LogOff
-
+        [HttpPost]
         public ActionResult SignOut() {
 
             return SignOutProgrammatically();
         }
 
-        private ActionResult SignOutProgrammatically() {
+        public ActionResult SignOutProgrammatically() {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignOut();
@@ -505,7 +505,7 @@ namespace ReliSource.Controllers {
                     if (result.Succeeded) {
                         var user = await Manager.FindByIdAsync(User.Identity.GetUserID());
                         await SignInAsync(user, false);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction("Manage", new {Message = ManageMessageId.ChangePasswordSuccess});
                     }
                     AddErrors(result);
                 }
@@ -519,7 +519,7 @@ namespace ReliSource.Controllers {
                 if (ModelState.IsValid) {
                     var result = await Manager.AddPasswordAsync(User.Identity.GetUserID(), model.NewPassword);
                     if (result.Succeeded) {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return RedirectToAction("Manage", new {Message = ManageMessageId.SetPasswordSuccess});
                     }
                     AddErrors(result);
                 }
