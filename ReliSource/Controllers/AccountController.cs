@@ -255,13 +255,13 @@ namespace ReliSource.Controllers {
         #endregion
 
         #region LogOff
-
+        [HttpPost]
         public ActionResult SignOut() {
 
             return SignOutProgrammatically();
         }
 
-        private ActionResult SignOutProgrammatically() {
+        public ActionResult SignOutProgrammatically() {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignOut();
