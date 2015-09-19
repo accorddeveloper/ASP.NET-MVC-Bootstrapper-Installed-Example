@@ -5,8 +5,9 @@ using ReliSource.Modules.Session;
 namespace ReliSource.Filter {
     public class AreaAuthorizeAttribute : ActionFilterAttribute {
         private readonly string[] _restrictedAreas = { "Admin" }; // area names to protect
-        private readonly bool _restrictionEnabled = false;
+        private bool _restrictionEnabled;
         public override void OnActionExecuting(ActionExecutingContext filterContext) {
+            _restrictionEnabled = AppVar.Setting.IsAuthenticationEnabled;
             if (_restrictionEnabled) {
                 var routeData = filterContext.RouteData;
                 // check if user is allowed on this page
@@ -41,5 +42,6 @@ namespace ReliSource.Filter {
                 }
             }
         }
+
     }
 }

@@ -24,6 +24,10 @@ namespace ReliSource.Models.POCO.IdentityCustomization {
         [DisplayName("Description")]
         public string ApplicationDescription { get; set; }
 
+        [StringLength(20)]
+        [DisplayName("Example Field")]
+        public string ExampleField { get; set; }
+
         [StringLength(400)]
         [Required]
         public string Address { get; set; }

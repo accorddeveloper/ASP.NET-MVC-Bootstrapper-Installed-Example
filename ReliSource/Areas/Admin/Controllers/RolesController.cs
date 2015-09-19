@@ -11,7 +11,7 @@ namespace ReliSource.Areas.Admin.Controllers {
 
         public ActionResult Index() {
             var roles = RoleManager.GetRoles();
-            var appname = AppVar.Setting.ApplicationName;
+            var appname = AppVar.Setting.ApplicationDescription;
             return View(roles);
         }
 

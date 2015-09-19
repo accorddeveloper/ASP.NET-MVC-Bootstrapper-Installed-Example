@@ -27,11 +27,17 @@ namespace ReliSource.Models.EntityModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
-        public virtual DbSet<ProductOrder> ProductOrders { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
+    
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerDemographic> CustomerDemographics { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<ProductOrder> ProductOrders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Shipper> Shippers { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Territory> Territories { get; set; }
     }
 }

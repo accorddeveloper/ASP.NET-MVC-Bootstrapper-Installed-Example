@@ -5,8 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ReliSource.Controllers;
 using DevTrends.MvcDonutCaching;
+using ReliSource.Controllers;
+
 using ReliSource.Models.EntityModel;
 
 namespace ReliSource.Controllers
@@ -135,6 +136,16 @@ namespace ReliSource.Controllers
 		#endregion
 
 		#region DropDowns Generate
+
+        #region EmployeesController : DropDowns to paste into the partial
+            
+            // [DonutOutputCache(CacheProfile = "YearNoParam")]
+            public JsonResult GetReportsTo() {
+                var data = db.Employees.Select(n => new {id = n.EmployeeID, display = n.LastName}).ToList();
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+      
+        #endregion
 
 		public void GetDropDowns(Employee employee = null){
 			if(employee != null){

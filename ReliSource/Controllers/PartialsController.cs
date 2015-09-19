@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ReliSource.Controllers;
-using ReliSource.Models.Context;
-//using ReliSource.Models.EntityModel.POCO; // Northwind Sample
+﻿//using ReliSource.Models.EntityModel.POCO; // Northwind Sample
 using DevTrends.MvcDonutCaching;
 using ReliSource.Models.EntityModel;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ReliSource.Controllers {
     [OutputCache(CacheProfile = "YearNoParam")]
@@ -66,7 +59,27 @@ namespace ReliSource.Controllers {
         }
 
         #endregion
+        #region ProductOrdersController : DropDowns to paste into the partial
 
+        // [DonutOutputCache(CacheProfile = "YearNoParam")]
+        public JsonResult GetCustomerID() {
+            var data = db.Customers.Select(n => new { id = n.CustomerID, display = n.CompanyName }).ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        // [DonutOutputCache(CacheProfile = "YearNoParam")]
+        public JsonResult GetEmployeeID() {
+            var data = db.Employees.Select(n => new { id = n.EmployeeID, display = n.LastName }).ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        // [DonutOutputCache(CacheProfile = "YearNoParam")]
+        public JsonResult GetShipVia(int id) {
+            var data = db.Shippers.Where(n=> n.ShipperID == id).Select(n => new { id = n.ShipperID, display = n.CompanyName }).ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
 
     }
 
