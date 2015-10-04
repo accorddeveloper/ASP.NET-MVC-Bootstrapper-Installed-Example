@@ -17,9 +17,14 @@ using Microsoft.Owin.Security;
 namespace ReliSource.Controllers {
     [Authorize]
     public class AccountController : Controller {
+        #region Constants and Variable
+        const string ControllerName = "Account";
+        const string DynamicLoadPartialController = "/Partials/";
+        #endregion
         #region Constructors
 
         public AccountController() {
+            ViewBag.dynamicLoadPartialController = DynamicLoadPartialController;
             Manager = UserManager.Manager;
         }
 
@@ -28,7 +33,7 @@ namespace ReliSource.Controllers {
         #region Call Complete Registration
 
         public void CallCompleteRegistration(long userId) {
-            UserManager.CompleteRegistration(userId, true);
+            UserManager.CompleteRegistration(userId, AppVar.Setting.IsRegisterCodeRequiredToRegister);
         }
 
         #endregion
@@ -63,7 +68,7 @@ namespace ReliSource.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider) {
             // Request a redirect to the external login provider to link a login for the current user
-            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), IdentityExtensions.GetUserId(User.Identity));
+            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
         }
 
         #endregion
@@ -71,11 +76,11 @@ namespace ReliSource.Controllers {
         #region LinkLoginCallBack
 
         public async Task<ActionResult> LinkLoginCallback() {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, IdentityExtensions.GetUserId(User.Identity));
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null) {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
-            var result = await Manager.AddLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), loginInfo.Login);
+            var result = await Manager.AddLoginAsync(User.Identity.GetUserID(), loginInfo.Login);
             if (result.Succeeded) {
                 return RedirectToAction("Manage");
             }
@@ -132,9 +137,9 @@ namespace ReliSource.Controllers {
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey) {
             ManageMessageId? message = null;
             var result =
-                await Manager.RemoveLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), new UserLoginInfo(loginProvider, providerKey));
+                await Manager.RemoveLoginAsync(User.Identity.GetUserID(), new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded) {
-                var user = await Manager.FindByIdAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
+                var user = await Manager.FindByIdAsync(User.Identity.GetUserID());
                 await SignInAsync(user, false);
                 message = ManageMessageId.RemoveLoginSuccess;
             } else {
@@ -195,7 +200,7 @@ namespace ReliSource.Controllers {
 
         public void SetThingsInViewBag() {
             ViewBag.Country = CachedQueriedData.GetCountries();
-            ViewBag.Country = CachedQueriedData.GetCountries();
+         
         }
 
         #endregion
@@ -252,8 +257,8 @@ namespace ReliSource.Controllers {
         #region LogOff
 
         public ActionResult SignOut() {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+
+            return SignOutProgrammatically();
         }
 
         private ActionResult SignOutProgrammatically() {
@@ -308,7 +313,7 @@ namespace ReliSource.Controllers {
 
                     if (AppVar.Setting.IsConfirmMailRequired && AppVar.Setting.IsFirstUserFound) {
                         // mail needs to be confirmed.
-
+                        // first user is already registered
                         #region Send an email to the user about mail confirmation
 
                         var code = Manager.GenerateEmailConfirmationToken(user.Id);
@@ -326,6 +331,7 @@ namespace ReliSource.Controllers {
                         #endregion
                     }
                     if (!AppVar.Setting.IsFirstUserFound) {
+                        // first user is not registered yet
                         #region Send an email to the user about mail confirmation
 
                         var code = Manager.GenerateEmailConfirmationToken(user.Id);
@@ -495,9 +501,9 @@ namespace ReliSource.Controllers {
                 if (ModelState.IsValid) {
                     var result =
                         await
-                            Manager.ChangePasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), model.OldPassword, model.NewPassword);
+                            Manager.ChangePasswordAsync(User.Identity.GetUserID(), model.OldPassword, model.NewPassword);
                     if (result.Succeeded) {
-                        var user = await Manager.FindByIdAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
+                        var user = await Manager.FindByIdAsync(User.Identity.GetUserID());
                         await SignInAsync(user, false);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
@@ -511,7 +517,7 @@ namespace ReliSource.Controllers {
                 }
 
                 if (ModelState.IsValid) {
-                    var result = await Manager.AddPasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), model.NewPassword);
+                    var result = await Manager.AddPasswordAsync(User.Identity.GetUserID(), model.NewPassword);
                     if (result.Succeeded) {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
@@ -542,7 +548,7 @@ namespace ReliSource.Controllers {
         }
 
         private bool HasPassword() {
-            var user = Manager.FindById(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
+            var user = Manager.FindById(User.Identity.GetUserID());
             if (user != null) {
                 return user.PasswordHash != null;
             }

@@ -2,6 +2,7 @@
 
 namespace ReliSource.Modules.Session {
     public struct SessionNames {
+        public const string UserID = "UserID";
         public const string User = "User";
         public const string LastUser = "LastSearchedUser";
         public const string IpAddress = "IpAddress";
