@@ -18,8 +18,8 @@ namespace ReliSource.Models.EntityModel
     public partial class NorthwindEntities : DevDbContext
     {
         public NorthwindEntities()
-            : base("name=NorthwindEntities")
-        {
+            : base("name=NorthwindEntities") {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
