@@ -17,13 +17,13 @@ namespace ReliSource.Modules.Cache {
         /// </summary>
         /// <returns></returns>
         public static List<Country> GetCountries() {
-            var tableName = CacheNames.CountryTableName;
-            var cache = GetTableContentsFromCache(tableName, _countries);
+            //var tableName = CacheNames.CountryTableName;
+            var cache = _countries;
             if (cache == null) {
                 //updates
                 var countries = GetCountriesFromDb();
                 _countries = countries;
-                AppConfig.Caches.TableStatusSetUnChanged(tableName);
+                //AppConfig.Caches.TableStatusSetUnChanged(tableName);
                 return countries;
             }
             return (List<Country>)cache;
@@ -103,26 +103,10 @@ namespace ReliSource.Modules.Cache {
         #region Saving and Getting data from cache.
 
         private static void SaveTableContentsInCache(string tableName, dynamic contents) {
-            AppConfig.Caches.Set(tableName, contents);
-            AppConfig.Caches.TableStatusSetUnChanged(tableName);
+            //AppConfig.Caches.Set(tableName, contents);
+            //AppConfig.Caches.TableStatusSetUnChanged(tableName);
         }
 
-        /// <summary>
-        ///     Return from cache or from db, whatever necessary based what exist.
-        ///     Always returns the updated one..
-        ///     To make it expire use CacheProcessor.TableNotify
-        /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="contents"></param>
-        /// <returns>If expired/not exist then returns null</returns>
-        private static dynamic GetTableContentsFromCache(string tableName, dynamic cached) {
-            var tableHasNoUpdate = AppConfig.Caches.TableStatusCheck(tableName);
-            bool cacheExist = cached != null;
-            if (cacheExist && tableHasNoUpdate) {
-                return cached; //no updates
-            }
-            return null;
-        }
 
         /// <summary>
         ///     Return from cache or from db, whatever necessary based what exist.
@@ -133,10 +117,9 @@ namespace ReliSource.Modules.Cache {
         /// <param name="contents"></param>
         /// <returns>If expired/not exist then returns null</returns>
         private static dynamic GetTableContentsFromCache(string tableName) {
-            var tableHasNoUpdate = AppConfig.Caches.TableStatusCheck(tableName);
             var cached = AppConfig.Caches.Get(tableName);
             bool cacheExist = cached != null;
-            if (cacheExist && tableHasNoUpdate) {
+            if (cacheExist) {
                 return cached; //no updates
             }
             return null;
@@ -152,17 +135,13 @@ namespace ReliSource.Modules.Cache {
         /// </summary>
         /// <returns></returns>
         public static List<CountryLanguage> GetLanguages() {
-            var tableName = CacheNames.LanguageTableName;
-
-            var cache = GetTableContentsFromCache(tableName, _languages);
-            if (cache == null) {
+            if (_languages == null) {
                 //updates
                 var languages = GetLanguagesFromDb();
                 _languages = languages;
-                AppConfig.Caches.TableStatusSetUnChanged(tableName);
                 return languages;
             }
-            return (List<CountryLanguage>)cache;
+            return (List<CountryLanguage>)_languages;
         }
 
         /// <summary>

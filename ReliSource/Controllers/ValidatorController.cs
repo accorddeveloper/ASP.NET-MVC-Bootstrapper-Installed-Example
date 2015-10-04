@@ -9,7 +9,7 @@ namespace ReliSource.Controllers {
         [HttpPost]
         [OutputCache(CacheProfile = "Long", VaryByParam = "id", VaryByCustom = "byuser")]
         [ValidateAntiForgeryToken]
-        public ActionResult GetUsername(string id) {
+        public ActionResult GetUsername(string id, string requestVerificationToken) {
             var returnParam = true;
             var max = 30;
             var min = 3;
@@ -37,7 +37,7 @@ namespace ReliSource.Controllers {
         [HttpPost]
         [OutputCache(CacheProfile = "Long", VaryByParam = "id", VaryByCustom = "byuser")]
         [ValidateAntiForgeryToken]
-        public ActionResult Username(string id) {
+        public ActionResult Username(string id, string requestVerificationToken) {
             var returnParam = true;
             var max = 30;
             var min = 3;
@@ -65,7 +65,7 @@ namespace ReliSource.Controllers {
         [HttpPost]
         [OutputCache(CacheProfile = "Long", VaryByParam = "id", VaryByCustom = "byuser")]
         [ValidateAntiForgeryToken]
-        public ActionResult Email(string id) {
+        public ActionResult Email(string id, string requestVerificationToken) {
             if (SessionNames.IsValidationExceed("Email")) {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }

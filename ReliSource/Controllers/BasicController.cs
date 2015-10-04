@@ -36,7 +36,6 @@ namespace ReliSource.Controllers {
             }
             base.Dispose(disposing);
             GC.Collect();
-
         }
     }
 }

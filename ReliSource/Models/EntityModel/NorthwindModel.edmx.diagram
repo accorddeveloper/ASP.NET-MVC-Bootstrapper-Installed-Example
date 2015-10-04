@@ -5,18 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ff10a298b22846d7bb0ef73da07690b8" Name="Diagram1">
-        <EntityTypeShape EntityType="NorthwindModel.Category" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NorthwindModel.Customer" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NorthwindModel.Employee" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="NorthwindModel.OrderDetail" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="NorthwindModel.ProductOrder" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NorthwindModel.Product" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
-        <AssociationConnector Association="NorthwindModel.FK_Products_Categories" ManuallyRouted="false" />
-        <AssociationConnector Association="NorthwindModel.FK_Orders_Customers" ManuallyRouted="false" />
-        <AssociationConnector Association="NorthwindModel.FK_Employees_Employees" ManuallyRouted="false" />
-        <AssociationConnector Association="NorthwindModel.FK_Orders_Employees" ManuallyRouted="false" />
-        <AssociationConnector Association="NorthwindModel.FK_Order_Details_Orders" ManuallyRouted="false" />
-        <AssociationConnector Association="NorthwindModel.FK_Order_Details_Products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NorthwindModel.Category" Width="1.5" PointX="3" PointY="18.875" />
+        <EntityTypeShape EntityType="NorthwindModel.Customer" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="NorthwindModel.CustomerDemographic" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="NorthwindModel.Employee" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="NorthwindModel.OrderDetail" Width="1.5" PointX="7.5" PointY="2.125" />
+        <EntityTypeShape EntityType="NorthwindModel.ProductOrder" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="NorthwindModel.Product" Width="1.5" PointX="5.25" PointY="15.875" />
+        <EntityTypeShape EntityType="NorthwindModel.Region" Width="1.5" PointX="5.75" PointY="7.125" />
+        <EntityTypeShape EntityType="NorthwindModel.Shipper" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="NorthwindModel.Supplier" Width="1.5" PointX="3" PointY="14.5" />
+        <EntityTypeShape EntityType="NorthwindModel.Territory" Width="1.5" PointX="8" PointY="9.375" />
+        <AssociationConnector Association="NorthwindModel.FK_Products_Categories" />
+        <AssociationConnector Association="NorthwindModel.FK_Orders_Customers" />
+        <AssociationConnector Association="NorthwindModel.FK_Employees_Employees" />
+        <AssociationConnector Association="NorthwindModel.FK_Orders_Employees" />
+        <AssociationConnector Association="NorthwindModel.FK_Order_Details_Orders" />
+        <AssociationConnector Association="NorthwindModel.FK_Order_Details_Products" />
+        <AssociationConnector Association="NorthwindModel.FK_Orders_Shippers" />
+        <AssociationConnector Association="NorthwindModel.FK_Products_Suppliers" />
+        <AssociationConnector Association="NorthwindModel.FK_Territories_Region" />
+        <AssociationConnector Association="NorthwindModel.CustomerCustomerDemo" />
+        <AssociationConnector Association="NorthwindModel.EmployeeTerritories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
