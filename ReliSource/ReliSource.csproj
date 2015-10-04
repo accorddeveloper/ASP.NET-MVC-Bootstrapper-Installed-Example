@@ -268,6 +268,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Context\NorthwindEntities.cs" />
+    <Compile Include="Models\Context\SchoolEntities.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IDevUserRole.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IDevUser.cs" />
     <Compile Include="Models\EntityModel\NorthwindModel.Designer.cs">
@@ -286,6 +287,15 @@
     <Compile Include="Models\EntityModel\POCO\Northwind\Shipper.cs" />
     <Compile Include="Models\EntityModel\POCO\Northwind\Supplier.cs" />
     <Compile Include="Models\EntityModel\POCO\Northwind\Territory.cs" />
+    <Compile Include="Models\EntityModel\SchoolModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityModel\SchoolPoco\School.cs" />
+    <Compile Include="Models\EntityModel\SchoolPoco\SchoolClass.cs" />
+    <Compile Include="Models\EntityModel\SchoolPoco\Student.cs" />
+    <Compile Include="Models\EntityModel\SchoolPoco\Subject.cs" />
     <Compile Include="Models\Inputs.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\Country.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\CountryAlternativeName.cs" />
@@ -370,6 +380,10 @@
     <Content Include="App_Data\ReliSource-accounts.mdf" />
     <Content Include="App_Data\ReliSource-accounts_log.ldf">
       <DependentUpon>ReliSource-accounts.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\school-management.mdf" />
+    <Content Include="App_Data\school-management_log.ldf">
+      <DependentUpon>school-management.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\StoredProceduresCreate\ResetRoles.sql" />
     <Content Include="App_Data\StoredProceduresCreate\ResetCoreSettings.sql" />
@@ -568,6 +582,13 @@
     </EntityDeploy>
     <Content Include="Models\EntityModel\NorthwindModel.edmx.diagram">
       <DependentUpon>NorthwindModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\EntityModel\SchoolModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EntityModel\SchoolModel.edmx.diagram">
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
