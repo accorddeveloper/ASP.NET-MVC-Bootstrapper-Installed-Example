@@ -1,9 +1,7 @@
 ﻿DevBootstraper is a project template and at the same time framework to build enterprise apps rapidly.
-Developed By 
-Developers Organism
-Lead Programmer 'Alim Ul Karim'
+Developed By 'Alim Ul Karim'
 Google for 'Alim Ul Karim'
-alim@developers-organism.com
+alim.karim.nsu@gmail.com
 
 
 Informal Instructions

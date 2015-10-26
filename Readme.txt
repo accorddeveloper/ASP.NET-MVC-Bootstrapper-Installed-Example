@@ -6,6 +6,7 @@ Visual Studio 2013,
 EntityFramework,
 SQLExpress 2012.
 
+Source Code:
 ReliSource is the installed version of the framework.
 PureMVC is the default project template from microsoft.
 
