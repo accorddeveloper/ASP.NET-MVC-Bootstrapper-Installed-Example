@@ -1,4 +1,5 @@
 Instructions:
+Please copy paste the folder into hard-drive before opening it because when files are opened it requires to create cache files, which can't be done inside dvd.
 
 Prerequiste to run the project :
 Visual Studio 2013,
@@ -20,3 +21,7 @@ https://github.com/aukgit/ASP.NET-MVC-Bootstrapper/commits/master
 
 Branches :
 https://github.com/aukgit/ASP.NET-MVC-Bootstrapper/branches
+
+Thank You,
+Md. Alim Ul Karim
+alim.karim.nsu@gmail.com
