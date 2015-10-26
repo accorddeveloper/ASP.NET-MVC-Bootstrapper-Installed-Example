@@ -2,7 +2,7 @@
 @model SchoolClass
 
 @{
-    ViewBag.Title = "Deleting " + Html.DisplayFor(model => model.ClassName);
+    ViewBag.Title = "Deleting " + Html.DisplayFor(model => model.SchoolClassName);
     string title = ViewBag.Title;
     string subtitle = ViewBag.Title;
 	string asking = "Are you sure you want to delete this?";
@@ -46,11 +46,11 @@
 			
 					<tr>
 						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.ClassName)
+							@Html.DisplayNameFor(model => model.SchoolClassName)
 						</td>
 						<td>:</td>
 						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.ClassName)
+							@Html.DisplayFor(model => model.SchoolClassName)
 						</td>
 					</tr>	
 			

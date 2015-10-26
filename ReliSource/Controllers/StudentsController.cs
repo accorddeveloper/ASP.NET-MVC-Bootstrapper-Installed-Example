@@ -150,7 +150,7 @@ namespace ReliSource.Controllers
       
             // [DonutOutputCache(CacheProfile = "YearNoParam")]
             public JsonResult GetSchoolClassID() {
-                var data = db.SchoolClasses.Select(n => new {id = n.SchoolClassID, display = n.ClassName}).ToList();
+                var data = db.SchoolClasses.Select(n => new {id = n.SchoolClassID, display = n.SchoolClassName}).ToList();
                 return Json(data, JsonRequestBehavior.AllowGet);
             }
       
@@ -159,17 +159,17 @@ namespace ReliSource.Controllers
 		public void GetDropDowns(Student student = null){
 			if(student != null){
 				ViewBag.SchoolID = new SelectList(db.Schools.ToList(), "SchoolID", "SchoolName", student.SchoolID);
-				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "ClassName", student.SchoolClassID);
+				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "SchoolClassName", student.SchoolClassID);
 			} else {			
 				ViewBag.SchoolID = new SelectList(db.Schools.ToList(), "SchoolID", "SchoolName");
-				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "ClassName");
+				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "SchoolClassName");
 			}
 			
 		}
 
 		public void GetDropDowns(System.Int64 id){			
 				ViewBag.SchoolID = new SelectList(db.Schools.ToList(), "SchoolID", "SchoolName");
-				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "ClassName");
+				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "SchoolClassName");
 		}
 		#endregion
 

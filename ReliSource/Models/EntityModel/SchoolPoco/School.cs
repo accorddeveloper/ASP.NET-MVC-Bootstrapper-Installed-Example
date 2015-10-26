@@ -14,7 +14,6 @@ namespace ReliSource.Models.EntityModel
     
     public partial class School
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public School()
         {
             this.SchoolClasses = new HashSet<SchoolClass>();
@@ -25,9 +24,7 @@ namespace ReliSource.Models.EntityModel
         public string SchoolName { get; set; }
         public string Address { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SchoolClass> SchoolClasses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Students { get; set; }
     }
 }

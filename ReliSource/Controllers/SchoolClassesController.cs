@@ -5,9 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DevTrends.MvcDonutCaching;
 using ReliSource.Controllers;
-
+using DevTrends.MvcDonutCaching;
 using ReliSource.Models.EntityModel;
 
 namespace ReliSource.Controllers
@@ -126,6 +125,10 @@ namespace ReliSource.Controllers
 				if(changes > 0){
                     RemoveOutputCacheOnIndex();
                     RemoveOutputCache(CurrentControllerRemoveOutputCacheUrl);
+
+                    var indexUrl = ControllerVisibleUrl + "Index";
+                    RemoveOutputCache(indexUrl);
+                    RemoveOutputCache("/" + ControllerName);
 					return true;
 				}
 			} catch (Exception ex){
@@ -137,7 +140,15 @@ namespace ReliSource.Controllers
 
 		#region DropDowns Generate
 
-    
+        #region SchoolClassesController : DropDowns to paste into the partial
+            
+            // [DonutOutputCache(CacheProfile = "YearNoParam")]
+            public JsonResult GetSchoolID() {
+                var data = db.Schools.Select(n => new {id = n.SchoolID, display = n.SchoolName}).ToList();
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+      
+        #endregion
 
 		public void GetDropDowns(SchoolClass schoolClass = null){
 			if(schoolClass != null){

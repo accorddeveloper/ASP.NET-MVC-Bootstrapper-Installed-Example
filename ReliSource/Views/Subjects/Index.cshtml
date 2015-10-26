@@ -32,8 +32,8 @@
 			<th data-field="SubjectName">
 				@Html.DisplayNameFor(model => model.SubjectName)
 			</th>
-			<th data-field="SchoolClass.ClassName">
-				@Html.DisplayNameFor(model => model.SchoolClass.ClassName)
+			<th data-field="SchoolClass.SchoolClassName">
+				@Html.DisplayNameFor(model => model.SchoolClass.SchoolClassName)
 			</th>
 			<th></th>
 		</tr>
@@ -47,10 +47,11 @@
 					<a href="@Url.Action("Edit", new { id=item.SubjectID })" title="@editLinkName edit..."><span class="glyphicon glyphicon-pencil"></span> @editLinkName</a>
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.SchoolClass.ClassName)
+					@Html.DisplayFor(modelItem => item.SchoolClass.SchoolClassName)
 				</td>
-				<td>			
-					<a href="@Url.Action("Details", new { id=item.SubjectID })" title="Details of @editLinkName." class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-print"></span> Details</a>
+				<td>
+                    <a href="@Url.Action("Edit", new { id=item.SubjectID })" title="Edit of @editLinkName." class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a>
+                    <a href="@Url.Action("Details", new { id=item.SubjectID })" title="Details of @editLinkName." class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-print"></span> Details</a>
 					<a href="@Url.Action("Delete", new { id=item.SubjectID })" title="Delete @editLinkName" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Delete</a>            
 				</td>
 			</tr>
