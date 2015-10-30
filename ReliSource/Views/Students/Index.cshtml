@@ -53,8 +53,8 @@
 			<th data-field="School.SchoolName">
 				@Html.DisplayNameFor(model => model.School.SchoolName)
 			</th>
-			<th data-field="SchoolClass.ClassName">
-				@Html.DisplayNameFor(model => model.SchoolClass.ClassName)
+			<th data-field="SchoolClass.SchoolClassName">
+				@Html.DisplayNameFor(model => model.SchoolClass.SchoolClassName)
 			</th>
 			<th></th>
 		</tr>
@@ -87,7 +87,7 @@
 					@Html.DisplayFor(modelItem => item.School.SchoolName)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.SchoolClass.ClassName)
+					@Html.DisplayFor(modelItem => item.SchoolClass.SchoolClassName)
 				</td>
 				<td>
                     <a href="@Url.Action("Edit", new { id=item.StudentID })" title="Edit of @editLinkName." class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a>

@@ -31,7 +31,8 @@ namespace ReliSource.Controllers {
 
         // [DonutOutputCache(CacheProfile = "YearNoParam")]
         public JsonResult GetSchoolClassID() {
-            var data = db.SchoolClasses.Select(n => new { id = n.SchoolClassID, display = n.ClassName }).ToList();
+            var data = db.SchoolClasses.Select(n => new {
+                id = n.SchoolClassID, display = n.SchoolClassName }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 

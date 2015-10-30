@@ -5,9 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DevTrends.MvcDonutCaching;
 using ReliSource.Controllers;
-
+using DevTrends.MvcDonutCaching;
 using ReliSource.Models.EntityModel;
 
 namespace ReliSource.Controllers
@@ -126,6 +125,10 @@ namespace ReliSource.Controllers
 				if(changes > 0){
                     RemoveOutputCacheOnIndex();
                     RemoveOutputCache(CurrentControllerRemoveOutputCacheUrl);
+
+                    var indexUrl = ControllerVisibleUrl + "Index";
+                    RemoveOutputCache(indexUrl);
+                    RemoveOutputCache("/" + ControllerName);
 					return true;
 				}
 			} catch (Exception ex){
@@ -137,18 +140,27 @@ namespace ReliSource.Controllers
 
 		#region DropDowns Generate
 
+        #region SubjectsController : DropDowns to paste into the partial
+            
+            // [DonutOutputCache(CacheProfile = "YearNoParam")]
+            public JsonResult GetSchoolClassID() {
+                var data = db.SchoolClasses.Select(n => new {id = n.SchoolClassID, display = n.SchoolClassName}).ToList();
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+      
+        #endregion
 
 		public void GetDropDowns(Subject subject = null){
 			if(subject != null){
-				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "ClassName", subject.SchoolClassID);
+				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "SchoolClassName", subject.SchoolClassID);
 			} else {			
-				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "ClassName");
+				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "SchoolClassName");
 			}
 			
 		}
 
 		public void GetDropDowns(System.Int32 id){			
-				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "ClassName");
+				ViewBag.SchoolClassID = new SelectList(db.SchoolClasses.ToList(), "SchoolClassID", "SchoolClassName");
 		}
 		#endregion
 
@@ -156,7 +168,7 @@ namespace ReliSource.Controllers
         [OutputCache(CacheProfile = "Year")]
         public ActionResult Index() { 
         
-            var subjects = db.Subjects.Include(s => s.SchoolClass).OrderByDescending(n=> n.SubjectID);
+            var subjects = db.Subjects.Include(s => s.SchoolClass);
 			bool viewOf = ViewTapping(ViewStates.Index);
             return View(subjects.ToList());
         }

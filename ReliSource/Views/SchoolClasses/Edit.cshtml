@@ -2,7 +2,7 @@
 @model SchoolClass
 
 @{
-    ViewBag.Title               = "Editing " + Html.DisplayFor(model => model.ClassName);
+    ViewBag.Title               = "Editing " + Html.DisplayFor(model => model.SchoolClassName);
 	string title                = ViewBag.Title;
     string subtitle             = ViewBag.Title;
     var token                   = (MvcHtmlString)@Html.AntiForgeryToken();
@@ -40,7 +40,7 @@
 
 		
 		@Html.HiddenFor(model => model.SchoolClassID)
-        @Html.EditorFor(model => model.ClassName)
+        @Html.EditorFor(model => model.SchoolClassName)
         <!-- DropDown -->
 		@if(dropDownDynamic){
             @Html.EditorFor(model => model.SchoolID, "DropDownDynamic", new {@Url = @partialController + "GetSchoolID" /* ,@IsDependable = "false", @DependablePropertyName = "YourPropertyName",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})

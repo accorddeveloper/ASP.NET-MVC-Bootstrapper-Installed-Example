@@ -2,7 +2,7 @@
 @model SchoolClass
 
 @{
-	string nameOftheRecord = Html.DisplayFor(model => model.ClassName).ToString();
+	string nameOftheRecord = Html.DisplayFor(model => model.SchoolClassName).ToString();
 
     ViewBag.Title = "Details of " + nameOftheRecord;
 	string title = ViewBag.Title;
@@ -42,11 +42,11 @@
 			
 				<tr>
 					<td class="dev-label-property">
-						@Html.DisplayNameFor(model => model.ClassName)
+						@Html.DisplayNameFor(model => model.SchoolClassName)
 					</td>
 					<td>:</td>
 					<td class="dev-label-value">
-						@Html.DisplayFor(model => model.ClassName)
+						@Html.DisplayFor(model => model.SchoolClassName)
 					</td>
 				</tr>	
 			
